@@ -61,9 +61,7 @@ public class Paciente {
     public Paciente() {
     }
 
-    public Paciente(Long id, String nome, String cpf, LocalDate dataNascimento,
-    String email, String telefone, Prontuario prontuario, List<Consulta> consultas,
-    List<Exame> exame) {
+    public Paciente(Long id, String nome, String cpf, LocalDate dataNascimento, String email, String telefone, Prontuario prontuario, List<Consulta> consultas, List<Exame> exame) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
@@ -122,7 +120,6 @@ public class Paciente {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-
 
     public Prontuario getProntuario() {
         return prontuario;

@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -19,7 +20,7 @@ public class Prontuario {
 
     @NotNull(message = "numero do prontuário não pode ser nulo")
     @NotBlank(message = "Número do prontuário é obrigatório")
-    @Column(nullable = false,unique = true)
+    @Column(nullable = false, unique = true)
     private BigDecimal numero;
 
     @NotNull(message = "Precrição não pode ser nula")
@@ -40,16 +41,25 @@ public class Prontuario {
     @Column(nullable = false)
     private LocalDateTime dataHoraAtendimento;
 
+    @OneToOne(mappedBy = "prontuario")
+    private Paciente paciente;
+
+    @ManyToOne
+    @JoinColumn(name = "id_medico")
+    private List<Medico> medico;
+
     public Prontuario() {
     }
 
-    public Prontuario(Long id, BigDecimal numero, String prescricao, String alergia, String medicamento, LocalDateTime dataHoraAtendimento) {
+    public Prontuario(Long id, BigDecimal numero, String prescricao, String alergia, String medicamento, LocalDateTime dataHoraAtendimento, Paciente paciente, List<Medico> medico) {
         this.id = id;
         this.numero = numero;
         this.prescricao = prescricao;
         this.alergia = alergia;
         this.medicamento = medicamento;
         this.dataHoraAtendimento = dataHoraAtendimento;
+        this.paciente = paciente;
+        this.medico = medico;
     }
 
     public Long getId() {
@@ -100,15 +110,45 @@ public class Prontuario {
         this.dataHoraAtendimento = dataHoraAtendimento;
     }
 
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
+
+    public List<Medico> getMedico() {
+        return medico;
+    }
+
+    public void setMedico(List<Medico> medico) {
+        this.medico = medico;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Prontuario that = (Prontuario) o;
-        return Objects.equals(id, that.id) && Objects.equals(numero, that.numero) && Objects.equals(prescricao, that.prescricao) && Objects.equals(alergia, that.alergia) && Objects.equals(medicamento, that.medicamento) && Objects.equals(dataHoraAtendimento, that.dataHoraAtendimento);
+        return Objects.equals(id, that.id)
+                && Objects.equals(numero, that.numero)
+                && Objects.equals(prescricao, that.prescricao)
+                && Objects.equals(alergia, that.alergia)
+                && Objects.equals(medicamento, that.medicamento)
+                && Objects.equals(dataHoraAtendimento, that.dataHoraAtendimento)
+                && Objects.equals(paciente, that.paciente)
+                && Objects.equals(medico, that.medico);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, numero, prescricao, alergia, medicamento, dataHoraAtendimento);
+        return Objects.hash(id,
+                numero,
+                prescricao,
+                alergia,
+                medicamento,
+                dataHoraAtendimento,
+                paciente,
+                medico);
     }
 }

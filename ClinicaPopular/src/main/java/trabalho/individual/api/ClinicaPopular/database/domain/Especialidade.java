@@ -76,11 +76,17 @@ public class Especialidade {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Especialidade that = (Especialidade) o;
-        return Objects.equals(id, that.id) && tipoEspecialidade == that.tipoEspecialidade && Objects.equals(descricao, that.descricao) && Objects.equals(codigoCBO, that.codigoCBO);
+        return Objects.equals(id, that.id)
+                && tipoEspecialidade == that.tipoEspecialidade
+                && Objects.equals(descricao, that.descricao)
+                && Objects.equals(codigoCBO, that.codigoCBO);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, tipoEspecialidade, descricao, codigoCBO);
+        return Objects.hash(id,
+                tipoEspecialidade,
+                descricao,
+                codigoCBO);
     }
 }

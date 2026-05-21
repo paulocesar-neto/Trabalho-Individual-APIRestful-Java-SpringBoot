@@ -4,10 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import trabalho.individual.api.ClinicaPopular.database.domain.Prontuario;
 
-import java.math.BigDecimal;
-
 @Repository
 public interface ProntuarioRepository extends JpaRepository<Prontuario, Long> {
-    Prontuario findByNumero(BigDecimal numero);
+    Prontuario findById(long id);
 }
 

@@ -10,6 +10,7 @@ import trabalho.individual.api.ClinicaPopular.enumerated.TipoConsulta;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -43,16 +44,26 @@ public class Consulta {
     @Enumerated(EnumType.STRING)
     private TipoConsulta tipoConsulta;
 
+    @ManyToOne
+    @JoinColumn(name = "id_paciente")
+    private Paciente paciente;
+
+    @ManyToOne
+    @JoinColumn(name = "id_medico")
+    private Medico medico;
+
     public Consulta() {
     }
 
-    public Consulta(Long id, String descricao, BigDecimal valor, LocalDateTime dataHoraConsulta, StatusConsulta status, TipoConsulta tipoConsulta) {
+    public Consulta(Long id, String descricao, BigDecimal valor, LocalDateTime dataHoraConsulta, StatusConsulta status, TipoConsulta tipoConsulta, Paciente paciente, Medico medico) {
         this.id = id;
         this.descricao = descricao;
         this.valor = valor;
         this.dataHoraConsulta = dataHoraConsulta;
         this.status = status;
         this.tipoConsulta = tipoConsulta;
+        this.paciente = paciente;
+        this.medico = medico;
     }
 
     public Long getId() {
@@ -103,15 +114,44 @@ public class Consulta {
         this.tipoConsulta = tipoConsulta;
     }
 
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
+
+    public Medico getMedico() {
+        return medico;
+    }
+
+    public void setMedico(Medico medico) {
+        this.medico = medico;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Consulta consulta = (Consulta) o;
-        return Objects.equals(id, consulta.id) && Objects.equals(descricao, consulta.descricao) && Objects.equals(valor, consulta.valor) && Objects.equals(dataHoraConsulta, consulta.dataHoraConsulta) && status == consulta.status && tipoConsulta == consulta.tipoConsulta;
+        return Objects.equals(id, consulta.id)
+                && Objects.equals(descricao, consulta.descricao)
+                && Objects.equals(valor, consulta.valor)
+                && Objects.equals(dataHoraConsulta, consulta.dataHoraConsulta)
+                && status == consulta.status && tipoConsulta == consulta.tipoConsulta
+                && Objects.equals(paciente, consulta.paciente)
+                && Objects.equals(medico, consulta.medico);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, descricao, valor, dataHoraConsulta, status, tipoConsulta);
+        return Objects.hash(id,
+                descricao,
+                valor,
+                dataHoraConsulta,
+                status,
+                tipoConsulta,
+                paciente,
+                medico);
     }
 }

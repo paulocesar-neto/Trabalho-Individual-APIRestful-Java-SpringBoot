@@ -30,14 +30,19 @@ public class Exame {
     @Column(nullable = false)
     private String motivo;
 
+    @ManyToOne
+    @JoinColumn(name = "id_paciente")
+    private Paciente paciente;
+
     public Exame() {
     }
 
-    public Exame(Long id, TipoExames exames, StatusExame status, String motivo) {
+    public Exame(Long id, TipoExames exames, StatusExame status, String motivo, Paciente paciente) {
         this.id = id;
         this.exames = exames;
         this.status = status;
         this.motivo = motivo;
+        this.paciente = paciente;
     }
 
     public Long getId() {
@@ -72,6 +77,14 @@ public class Exame {
         this.motivo = motivo;
     }
 
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
@@ -79,11 +92,12 @@ public class Exame {
         return Objects.equals(id, exame.id)
                 && exames == exame.exames
                 && status == exame.status
-                && Objects.equals(motivo, exame.motivo);
+                && Objects.equals(motivo, exame.motivo)
+                && Objects.equals(paciente, exame.paciente);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, exames, status, motivo);
+        return Objects.hash(id, exames, status, motivo, paciente);
     }
 }

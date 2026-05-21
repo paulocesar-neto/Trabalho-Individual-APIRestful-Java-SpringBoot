@@ -6,5 +6,5 @@ import trabalho.individual.api.ClinicaPopular.database.domain.Medico;
 
 @Repository
 public interface MedicoRepository extends JpaRepository<Medico, Long> {
-    Medico findByCrm(String crm);
+    Medico findByEmail(String email);
 }
