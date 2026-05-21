@@ -41,7 +41,8 @@ public class Prontuario {
     @Column(nullable = false)
     private LocalDateTime dataHoraAtendimento;
 
-    @OneToOne(mappedBy = "prontuario")
+    @OneToOne
+    @JoinColumn(name = "id_paciente")
     private Paciente paciente;
 
     @ManyToOne

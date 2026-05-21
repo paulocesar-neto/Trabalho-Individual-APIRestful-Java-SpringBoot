@@ -8,6 +8,7 @@ import jakarta.validation.constraints.Size;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -34,8 +35,8 @@ public class Paciente {
 
     @NotNull(message ="Data de Nascimento é obrigatória.Por Favor preencha!" )
     @NotBlank(message ="Data de Nascimento é obrigatória.Por Favor preencha!" )
-    @Column(nullable = false)
-    private LocalDate dataNascimento;
+    @Column(name = "data_nascimento", nullable = false)
+    private LocalDateTime dataNascimento;
 
     @NotNull(message ="O Email é obrigatório.Por Favor preencha!" )
     @NotBlank(message ="O Email é obrigatório.Por Favor preencha!" )
@@ -48,20 +49,19 @@ public class Paciente {
     @Column(nullable = false,unique = true)
     private String telefone;
 
-    @OneToOne
-    @JoinColumn(name = "id_prontuario")
+    @OneToOne(mappedBy = "paciente")
     private Prontuario prontuario;
 
     @OneToMany(mappedBy="paciente")
     private List<Consulta> consultas;
 
-    @OneToMany(mappedBy = "paciente")
+    @OneToMany(mappedBy ="paciente")
     private List<Exame> exame;
 
     public Paciente() {
     }
 
-    public Paciente(Long id, String nome, String cpf, LocalDate dataNascimento, String email, String telefone, Prontuario prontuario, List<Consulta> consultas, List<Exame> exame) {
+    public Paciente(Long id, String nome, String cpf, LocalDateTime dataNascimento, String email, String telefone, Prontuario prontuario, List<Consulta> consultas, List<Exame> exame) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
@@ -97,11 +97,11 @@ public class Paciente {
         this.cpf = cpf;
     }
 
-    public LocalDate getDataNascimento() {
+    public LocalDateTime getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(LocalDate dataNascimento) {
+    public void setDataNascimento(LocalDateTime dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 

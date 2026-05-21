@@ -35,7 +35,7 @@ public class Consulta {
 
     @NotBlank(message = "A data e hora são  obrigatórias")
     @NotNull (message = "A data e hora não podem ser nulas")
-    @Column(nullable = false)
+    @Column(name = "data_hora_consulta", nullable = false)
     private LocalDateTime dataHoraConsulta;
 
     @Enumerated(EnumType.STRING)
