@@ -1,7 +1,8 @@
 package trabalho.individual.api.ClinicaPopular.database.domain;
 
-
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import trabalho.individual.api.ClinicaPopular.enumerated.TipoEspecialidade;
 
 import java.util.Objects;
@@ -9,22 +10,34 @@ import java.util.Objects;
 @Entity
 @Table(name = "especialidade")
 public class Especialidade {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "O Tipo de especialidade deve ser preenchido")
+    @NotNull (message = "O Tipo de especialidade não pode ser nulo")
     @Enumerated(EnumType.STRING)
     private TipoEspecialidade tipoEspecialidade;
 
-    private String codigoCFM;
+    @NotBlank(message = "A descrição deve ser preenchida")
+    @NotNull (message = "A descrição não pode ser nula")
+    @Column(nullable = false)
+    private String descricao;
+
+    @NotBlank(message = "O Código CFM é obrigatório")
+    @NotNull(message = "O Código CFM não pode ser nulo")
+    @Column(name = "codigo_cbo", nullable = false,length = 255)
+    private String codigoCBO;//Código Brasileito de Ocupação;
 
     public Especialidade() {
     }
 
-    public Especialidade(Long id, TipoEspecialidade tipoEspecialidade, String codigoCFM) {
+    public Especialidade(Long id, TipoEspecialidade tipoEspecialidade, String descricao, String codigoCBO) {
         this.id = id;
         this.tipoEspecialidade = tipoEspecialidade;
-        this.codigoCFM = codigoCFM;
+        this.descricao = descricao;
+        this.codigoCBO = codigoCBO;
     }
 
     public Long getId() {
@@ -43,23 +56,31 @@ public class Especialidade {
         this.tipoEspecialidade = tipoEspecialidade;
     }
 
-    public String getCodigoCFM() {
-        return codigoCFM;
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public String getCodigoCBO() {
+        return codigoCBO;
     }
 
     public void setCodigoCFM(String codigoCFM) {
-        this.codigoCFM = codigoCFM;
+        this.codigoCBO = codigoCBO;
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Especialidade that = (Especialidade) o;
-        return Objects.equals(id, that.id) && tipoEspecialidade == that.tipoEspecialidade && Objects.equals(codigoCFM, that.codigoCFM);
+        return Objects.equals(id, that.id) && tipoEspecialidade == that.tipoEspecialidade && Objects.equals(descricao, that.descricao) && Objects.equals(codigoCBO, that.codigoCBO);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, tipoEspecialidade, codigoCFM);
+        return Objects.hash(id, tipoEspecialidade, descricao, codigoCBO);
     }
 }

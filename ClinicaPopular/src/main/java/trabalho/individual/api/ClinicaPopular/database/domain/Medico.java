@@ -3,6 +3,9 @@ package trabalho.individual.api.ClinicaPopular.database.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import org.hibernate.validator.constraints.br.CPF;
 
 import java.util.Objects;
 
@@ -12,15 +15,33 @@ public class Medico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank
+
+    @NotBlank(message = "O nome do Médico é obrigatório")
+    @NotNull(message = "O nome do Médico não pode ser nulo")
+    @Column(nullable = false)
     private String nome;
-    @NotBlank
+
+    @NotBlank(message = "O nome do Médico é obrigatório")
+    @NotNull(message = "O nome do Médico não pode ser nulo")
+    @Size(min = 14, max = 14, message = "O CFP deve conter 14 dígitos")
+    @CPF(message = "Formato inválido,preencha corretamente.exemplo: 123.456.789-10")
+    @Column(nullable = false,length = 14,unique = true)
     private String cpf;
-    @NotBlank
+
+    @NotBlank(message = "O CRM é obrigatório")
+    @NotNull(message = "O CRM não pode ser nulo")
+    @Size(max = 15,message = "O CRM deve possuir no máximo 15 caracteres")
+    @Column(nullable = false,length = 15,unique = true)
     private String crm;
-    @NotBlank
+
+    @NotBlank(message = "O telefone é obrigatório")
+    @NotNull(message = "O telefone não pode ser nulo")
+    @Column(nullable = false,unique = true)
     private String telefone;
-    @NotBlank
+
+    @NotBlank(message = "Email é obrigatório")
+    @NotNull(message = "Email não pode ser nulo")
+    @Column(nullable = false,unique = true)
     private String email;
 
     public Medico() {

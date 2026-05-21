@@ -1,12 +1,15 @@
 package trabalho.individual.api.ClinicaPopular.database.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import trabalho.individual.api.ClinicaPopular.enumerated.StatusConsulta;
 import trabalho.individual.api.ClinicaPopular.enumerated.TipoConsulta;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -17,11 +20,22 @@ public class Consulta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
-    @Column(nullable = false)
+    @NotBlank(message = "A descrição é obrigatória")
+    @NotNull (message = "A descrição não pode ser nula")
+    @Size(max = 255,message = "O máximo é de 255 caracteres")
+    @Column(nullable = false,length = 255)
     private String descricao;
+
+    @NotBlank(message = "O valor é obrigatória")
+    @NotNull (message = "O valor não pode ser nula")
+    @DecimalMin(value="100.00",inclusive = true,message = "O Valor da consulta é a partir de R$100.00")
+    @Column(nullable = false)
     private BigDecimal valor;
-    private LocalDate dataHoraConsulta;
+
+    @NotBlank(message = "A data e hora são  obrigatórias")
+    @NotNull (message = "A data e hora não podem ser nulas")
+    @Column(nullable = false)
+    private LocalDateTime dataHoraConsulta;
 
     @Enumerated(EnumType.STRING)
     private StatusConsulta status;
@@ -32,7 +46,7 @@ public class Consulta {
     public Consulta() {
     }
 
-    public Consulta(Long id, String descricao, BigDecimal valor, LocalDate dataHoraConsulta, StatusConsulta status, TipoConsulta tipoConsulta) {
+    public Consulta(Long id, String descricao, BigDecimal valor, LocalDateTime dataHoraConsulta, StatusConsulta status, TipoConsulta tipoConsulta) {
         this.id = id;
         this.descricao = descricao;
         this.valor = valor;
@@ -65,11 +79,11 @@ public class Consulta {
         this.valor = valor;
     }
 
-    public LocalDate getDataHoraConsulta() {
+    public LocalDateTime getDataHoraConsulta() {
         return dataHoraConsulta;
     }
 
-    public void setDataHoraConsulta(LocalDate dataHoraConsulta) {
+    public void setDataHoraConsulta(LocalDateTime dataHoraConsulta) {
         this.dataHoraConsulta = dataHoraConsulta;
     }
 

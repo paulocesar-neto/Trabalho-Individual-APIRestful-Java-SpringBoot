@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -26,8 +27,9 @@ public class Paciente {
 
     @NotNull(message = "CPF é obrigatório.Por favor preencha!")
     @NotBlank(message = "CPF é obrigatório.Por favor preencha!")
-    @Size(max = 11,message = "O máximo é de 11 caracteres")
-    @Column(nullable = false,length = 11,unique = true)
+    @Size(min = 14, max = 14, message = "O CFP deve conter 14 dígitos")
+    @CPF(message = "Formato inválido,preencha corretamente.exemplo: 123.456.789-10")
+    @Column(nullable = false,length = 14,unique = true)
     private String cpf;
 
     @NotNull(message ="Data de Nascimento é obrigatória.Por Favor preencha!" )
@@ -38,18 +40,13 @@ public class Paciente {
     @NotNull(message ="O Email é obrigatório.Por Favor preencha!" )
     @NotBlank(message ="O Email é obrigatório.Por Favor preencha!" )
     @Email(message = "O email tem que estar no formato email. Exemplo: email@example.com")
-    @Size(max = 70)
-    @Column(nullable = false,length = 70,unique = true)
+    @Column(nullable = false,unique = true)
     private String email;
 
     @NotNull(message = "O Telefone é obrigatório.Por favor preencha!")
     @NotBlank(message = "O Telefone é obrigatório.Por favor preencha!")
-    @Size(max = 11,message = "O numero de telefone é no máximo 11 caracteres. Exemplo: DD 9XXXX-XXXX")
-    @Column(nullable = false,length = 11,unique = true)
+    @Column(nullable = false,unique = true)
     private String telefone;
-
-    @Column(nullable = false)
-    private String endereco;
 
     @OneToOne
     @JoinColumn(name = "id_prontuario")
@@ -65,7 +62,7 @@ public class Paciente {
     }
 
     public Paciente(Long id, String nome, String cpf, LocalDate dataNascimento,
-    String email, String telefone, String endereco, Prontuario prontuario, List<Consulta> consultas,
+    String email, String telefone, Prontuario prontuario, List<Consulta> consultas,
     List<Exame> exame) {
         this.id = id;
         this.nome = nome;
@@ -73,7 +70,6 @@ public class Paciente {
         this.dataNascimento = dataNascimento;
         this.email = email;
         this.telefone = telefone;
-        this.endereco = endereco;
         this.prontuario = prontuario;
         this.consultas = consultas;
         this.exame = exame;
@@ -127,13 +123,6 @@ public class Paciente {
         this.telefone = telefone;
     }
 
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
 
     public Prontuario getProntuario() {
         return prontuario;
@@ -169,7 +158,6 @@ public class Paciente {
                 && Objects.equals(dataNascimento, paciente.dataNascimento)
                 && Objects.equals(email, paciente.email)
                 && Objects.equals(telefone, paciente.telefone)
-                && Objects.equals(endereco, paciente.endereco)
                 && Objects.equals(prontuario, paciente.prontuario)
                 && Objects.equals(consultas, paciente.consultas)
                 && Objects.equals(exame, paciente.exame);
@@ -183,7 +171,6 @@ public class Paciente {
                 dataNascimento,
                 email,
                 telefone,
-                endereco,
                 prontuario,
                 consultas,
                 exame);
