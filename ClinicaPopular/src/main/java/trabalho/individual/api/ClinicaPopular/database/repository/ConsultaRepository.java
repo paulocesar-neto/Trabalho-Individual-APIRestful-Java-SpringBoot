@@ -8,4 +8,5 @@ import trabalho.individual.api.ClinicaPopular.database.domain.Consulta;
 
 @Repository
 public interface ConsultaRepository extends JpaRepository<Consulta, Long> {
+    Consulta findById(long id);
 }

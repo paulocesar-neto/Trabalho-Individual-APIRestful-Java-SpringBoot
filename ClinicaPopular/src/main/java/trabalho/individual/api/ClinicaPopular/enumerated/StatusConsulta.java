@@ -1,8 +1,5 @@
 package trabalho.individual.api.ClinicaPopular.enumerated;
 
-
-
-
 public enum StatusConsulta {
     AGENDADA,
     PENDENTE,

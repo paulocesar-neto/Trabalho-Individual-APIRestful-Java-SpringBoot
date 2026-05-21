@@ -7,4 +7,5 @@ import trabalho.individual.api.ClinicaPopular.database.domain.Paciente;
 
 @Repository
 public interface PacienteRepository extends JpaRepository<Paciente, Long> {
+    Paciente findByCpf(String cpf);
 }
