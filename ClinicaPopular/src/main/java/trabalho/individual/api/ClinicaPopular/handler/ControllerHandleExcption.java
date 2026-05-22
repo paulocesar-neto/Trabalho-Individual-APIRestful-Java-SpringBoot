@@ -9,6 +9,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import trabalho.individual.api.ClinicaPopular.exception.RecursoNaoEncontradoException;
@@ -34,7 +35,7 @@ public class ControllerHandleExcption extends ResponseEntityExceptionHandler {
         return super.handleExceptionInternal(ex, errorResposta, headers, status, request);
 
     }
-
+    @ExceptionHandler(RecursoNaoEncontradoException.class)
     public ResponseEntity<Object> tratarRecursoNaoEncontrado(RecursoNaoEncontradoException ex) {
 
         ErrorResposta error = new ErrorResposta(

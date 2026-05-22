@@ -1,16 +1,13 @@
 package trabalho.individual.api.ClinicaPopular.database.domain;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+
 import trabalho.individual.api.ClinicaPopular.enumerated.StatusConsulta;
 import trabalho.individual.api.ClinicaPopular.enumerated.TipoConsulta;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
+
 import java.util.Objects;
 
 @Entity
@@ -21,20 +18,16 @@ public class Consulta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "A descrição é obrigatória")
-    @NotNull (message = "A descrição não pode ser nula")
-    @Size(max = 255,message = "O máximo é de 255 caracteres")
+
     @Column(nullable = false,length = 255)
     private String descricao;
 
-    @NotBlank(message = "O valor é obrigatória")
-    @NotNull (message = "O valor não pode ser nula")
-    @DecimalMin(value="100.00",inclusive = true,message = "O Valor da consulta é a partir de R$100.00")
+
     @Column(nullable = false)
     private BigDecimal valor;
 
-    @NotBlank(message = "A data e hora são  obrigatórias")
-    @NotNull (message = "A data e hora não podem ser nulas")
+
+
     @Column(name = "data_hora_consulta", nullable = false)
     private LocalDateTime dataHoraConsulta;
 

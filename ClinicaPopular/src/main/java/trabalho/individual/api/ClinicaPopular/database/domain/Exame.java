@@ -1,12 +1,8 @@
 package trabalho.individual.api.ClinicaPopular.database.domain;
 
 import jakarta.persistence.*;
-
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import trabalho.individual.api.ClinicaPopular.enumerated.StatusExame;
 import trabalho.individual.api.ClinicaPopular.enumerated.TipoExames;
-
 import java.util.Objects;
 
 @Entity
@@ -17,16 +13,12 @@ public class Exame {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "O tipo do exame deve ser preenchido")
-    @NotNull(message = "O tipo do exame não pode ser nulo")
     @Enumerated(EnumType.ORDINAL)
     private TipoExames exames;
 
     @Enumerated(EnumType.ORDINAL)
     private StatusExame status;
 
-    @NotBlank(message = "o motivo deve ser preenchido")
-    @NotNull (message = "O motivo não pode ser nulo")
     @Column(nullable = false)
     private String motivo;
 

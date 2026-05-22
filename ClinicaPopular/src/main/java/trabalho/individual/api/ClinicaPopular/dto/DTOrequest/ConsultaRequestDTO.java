@@ -1,5 +1,9 @@
 package trabalho.individual.api.ClinicaPopular.dto.DTOrequest;
 
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import trabalho.individual.api.ClinicaPopular.database.domain.Medico;
 import trabalho.individual.api.ClinicaPopular.database.domain.Paciente;
 import trabalho.individual.api.ClinicaPopular.enumerated.StatusConsulta;
@@ -11,8 +15,14 @@ import java.util.List;
 
 public class ConsultaRequestDTO {
 
+    @NotBlank(message = "A descrição é obrigatória")
+    @NotNull(message = "A descrição não pode ser nula")
+    @Size(max = 255,message = "O máximo é de 255 caracteres")
     private String descricao;
+    @NotNull (message = "O valor não pode ser nula")
+    @DecimalMin(value="100.00",inclusive = true,message = "O Valor da consulta é a partir de R$100.00")
     private BigDecimal valor;
+    @NotNull (message = "A data e hora não podem ser nulas")
     private LocalDateTime dataHoraConsulta;
     private TipoConsulta  tipoConsulta;
     private StatusConsulta statusConsulta;

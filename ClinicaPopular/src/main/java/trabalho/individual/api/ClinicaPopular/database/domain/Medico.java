@@ -1,12 +1,6 @@
 package trabalho.individual.api.ClinicaPopular.database.domain;
 
-
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
-import org.hibernate.validator.constraints.br.CPF;
-
 import java.util.List;
 import java.util.Objects;
 
@@ -17,24 +11,15 @@ public class Medico {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "O nome do Médico é obrigatório")
-    @NotNull(message = "O nome do Médico não pode ser nulo")
     @Column(nullable = false)
     private String nome;
 
-    @NotBlank(message = "O CRM é obrigatório")
-    @NotNull(message = "O CRM não pode ser nulo")
-    @Size(max = 15,message = "O CRM deve possuir no máximo 15 caracteres")
     @Column(nullable = false,length = 15,unique = true)
     private String crm;
 
-    @NotBlank(message = "O telefone é obrigatório")
-    @NotNull(message = "O telefone não pode ser nulo")
     @Column(nullable = false,unique = true)
     private String telefone;
 
-    @NotBlank(message = "Email é obrigatório")
-    @NotNull(message = "Email não pode ser nulo")
     @Column(nullable = false,unique = true)
     private String email;
 
@@ -49,7 +34,6 @@ public class Medico {
     joinColumns = @JoinColumn (name = "id_medico"),
     inverseJoinColumns = @JoinColumn(name="id_especialidade"))
     private List<Especialidade> especialidade;
-
 
     public Medico() {
     }

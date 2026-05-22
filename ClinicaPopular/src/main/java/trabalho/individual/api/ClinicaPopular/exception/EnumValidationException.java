@@ -1,0 +1,7 @@
+package trabalho.individual.api.ClinicaPopular.exception;
+
+public class EnumValidationException extends Exception{
+    public EnumValidationException(String message) {
+        super(message);
+    }
+}

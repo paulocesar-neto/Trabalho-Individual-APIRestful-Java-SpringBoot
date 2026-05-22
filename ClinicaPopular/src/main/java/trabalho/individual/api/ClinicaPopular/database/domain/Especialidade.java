@@ -15,18 +15,14 @@ public class Especialidade {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "O Tipo de especialidade deve ser preenchido")
-    @NotNull (message = "O Tipo de especialidade não pode ser nulo")
     @Enumerated(EnumType.STRING)
     private TipoEspecialidade tipoEspecialidade;
 
-    @NotBlank(message = "A descrição deve ser preenchida")
-    @NotNull (message = "A descrição não pode ser nula")
+
     @Column(nullable = false)
     private String descricao;
 
-    @NotBlank(message = "O Código CFM é obrigatório")
-    @NotNull(message = "O Código CFM não pode ser nulo")
+
     @Column(name = "codigo_cbo", nullable = false,length = 255)
     private String codigoCBO;//Código Brasileito de Ocupação;
 

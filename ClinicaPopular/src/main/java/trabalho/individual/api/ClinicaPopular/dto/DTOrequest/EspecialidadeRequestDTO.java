@@ -1,5 +1,7 @@
 package trabalho.individual.api.ClinicaPopular.dto.DTOrequest;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import trabalho.individual.api.ClinicaPopular.database.domain.Medico;
 import trabalho.individual.api.ClinicaPopular.enumerated.TipoEspecialidade;
 
@@ -7,8 +9,14 @@ import java.util.List;
 
 public class EspecialidadeRequestDTO {
 
+
+   @NotNull(message = "O Tipo de especialidade não pode ser nulo")
    private TipoEspecialidade tipoEspecialidade;
+   @NotBlank(message = "A descrição deve ser preenchida")
+   @NotNull (message = "A descrição não pode ser nula")
    private String descricao;
+   @NotBlank(message = "O Código CFM é obrigatório")
+   @NotNull(message = "O Código CFM não pode ser nulo")
    private String codigoCBO;
    private List<Medico> medicos;
 

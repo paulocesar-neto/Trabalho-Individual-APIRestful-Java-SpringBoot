@@ -2,8 +2,7 @@ package trabalho.individual.api.ClinicaPopular.database.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+
 
 
 import java.time.LocalDateTime;
@@ -18,27 +17,19 @@ public class Prontuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "numero do prontuário não pode ser nulo")
-    @NotBlank(message = "Número do prontuário é obrigatório")
     @Column(nullable = false, unique = true)
     private String numero;
 
-    @NotNull(message = "Precrição não pode ser nula")
-    @NotBlank(message = "Prescrição é obrigatória")
     @Column(nullable = false)
     private String prescricao;
 
-    @Size(max = 255)
     @Column(length = 255)
     private String alergia;
 
-    @Size(max = 255)
     @Column(length = 255)
     private String medicamento;
 
-    @NotNull(message = "Data e Hora não podem ser nulos")
-    @NotBlank(message = "Data e Hora são obrigatórios")
-    @Column(nullable = false)
+    @Column(name = "data_hora_atendimento", nullable = false)
     private LocalDateTime dataHoraAtendimento;
 
     @OneToOne

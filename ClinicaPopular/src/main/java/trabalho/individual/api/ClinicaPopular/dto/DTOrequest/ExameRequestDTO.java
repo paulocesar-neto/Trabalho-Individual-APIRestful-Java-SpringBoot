@@ -1,14 +1,21 @@
 package trabalho.individual.api.ClinicaPopular.dto.DTOrequest;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import trabalho.individual.api.ClinicaPopular.database.domain.Paciente;
 import trabalho.individual.api.ClinicaPopular.enumerated.StatusExame;
 import trabalho.individual.api.ClinicaPopular.enumerated.TipoExames;
 
 public class ExameRequestDTO {
 
+    @NotNull(message = "O tipo do exame é obrigatório")
     private TipoExames exames;
+    @NotNull(message = "O status do exame é obrigatório")
     private StatusExame status;
+    @NotBlank(message = "o motivo deve ser preenchido")
+    @NotNull (message = "O motivo não pode ser nulo")
     private String motivo;
+
     private Paciente paciente;
 
     public ExameRequestDTO() {

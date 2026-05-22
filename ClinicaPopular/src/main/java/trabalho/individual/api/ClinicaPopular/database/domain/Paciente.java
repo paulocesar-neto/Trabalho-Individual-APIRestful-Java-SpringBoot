@@ -1,13 +1,8 @@
 package trabalho.individual.api.ClinicaPopular.database.domain;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
-import org.hibernate.validator.constraints.br.CPF;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -20,32 +15,19 @@ public class Paciente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "O nome é obrigatório.Por favor preencha!")
-    @NotBlank(message = "O nome é obrigatório.Por favor preencha! ")
-    @Size(max = 100, message = "O maximo é de 100 caracteres")
     @Column(nullable = false,length = 100)
     private String nome;
 
-    @NotNull(message = "CPF é obrigatório.Por favor preencha!")
-    @NotBlank(message = "CPF é obrigatório.Por favor preencha!")
-    @Size(min = 14, max = 14, message = "O CFP deve conter 14 dígitos")
-    @CPF(message = "Formato inválido,preencha corretamente.exemplo: 123.456.789-10")
     @Column(nullable = false,length = 14,unique = true)
     private String cpf;
 
-    @NotNull(message ="Data de Nascimento é obrigatória.Por Favor preencha!" )
-    @NotBlank(message ="Data de Nascimento é obrigatória.Por Favor preencha!" )
     @Column(name = "data_nascimento", nullable = false)
     private LocalDateTime dataNascimento;
 
-    @NotNull(message ="O Email é obrigatório.Por Favor preencha!" )
-    @NotBlank(message ="O Email é obrigatório.Por Favor preencha!" )
-    @Email(message = "O email tem que estar no formato email. Exemplo: email@example.com")
     @Column(nullable = false,unique = true)
     private String email;
 
-    @NotNull(message = "O Telefone é obrigatório.Por favor preencha!")
-    @NotBlank(message = "O Telefone é obrigatório.Por favor preencha!")
+
     @Column(nullable = false,unique = true)
     private String telefone;
 
