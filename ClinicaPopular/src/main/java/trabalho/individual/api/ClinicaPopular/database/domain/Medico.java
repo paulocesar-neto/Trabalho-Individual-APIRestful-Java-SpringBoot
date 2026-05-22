@@ -1,5 +1,7 @@
 package trabalho.individual.api.ClinicaPopular.database.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import java.util.List;
 import java.util.Objects;
@@ -9,30 +11,40 @@ import java.util.Objects;
 public class Medico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(description = "identificador único do Médico",example = "1")
     private Long id;
 
     @Column(nullable = false)
+    @Schema(description = "Nome completo do médico")
     private String nome;
 
     @Column(nullable = false,length = 15,unique = true)
+    @Schema(description = "CRM do médico",example = "CRM/RJ 123456")
     private String crm;
 
     @Column(nullable = false,unique = true)
+    @Schema(description = "Telefone Celular do médico")
     private String telefone;
 
     @Column(nullable = false,unique = true)
+    @Schema(description = "Email do médico")
     private String email;
 
     @OneToMany(mappedBy = "medico")
+    @JsonManagedReference(value = "medico-consulta")
+    @Schema(description = "Consultas realizadas pelos médicos")
     private List<Consulta> consulta;
 
     @OneToMany (mappedBy = "medico")
+    @JsonManagedReference(value = "medico-prontuario")
+    @Schema(description = "Prontuário atendido pelos médicos")
     private List<Prontuario> prontuario;
 
     @ManyToMany
     @JoinTable(name = "medico_especialidade",
     joinColumns = @JoinColumn (name = "id_medico"),
     inverseJoinColumns = @JoinColumn(name="id_especialidade"))
+    @Schema(description = "Especialidade do Médico")
     private List<Especialidade> especialidade;
 
     public Medico() {

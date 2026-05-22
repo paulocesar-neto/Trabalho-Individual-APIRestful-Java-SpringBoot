@@ -12,6 +12,7 @@ import java.util.List;
 
 public class ConsultaResponseDTO {
 
+    private Long id;
     private String descricao;
     private LocalDateTime dataHoraConsulta;
     private BigDecimal valor;
@@ -21,11 +22,19 @@ public class ConsultaResponseDTO {
     private List<Medico> medico;
 
     public ConsultaResponseDTO(Consulta consulta) {
+        this.id = consulta.getId();
         this.descricao = consulta.getDescricao();
         this.dataHoraConsulta = consulta.getDataHoraConsulta();
         this.valor = consulta.getValor();
         this.statusConsulta = consulta.getStatus();
         this.tipoConsulta = consulta.getTipoConsulta();
+    }
+
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getDescricao() {

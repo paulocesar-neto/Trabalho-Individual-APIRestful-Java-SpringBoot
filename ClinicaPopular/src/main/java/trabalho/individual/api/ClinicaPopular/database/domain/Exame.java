@@ -1,5 +1,7 @@
 package trabalho.individual.api.ClinicaPopular.database.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import trabalho.individual.api.ClinicaPopular.enumerated.StatusExame;
 import trabalho.individual.api.ClinicaPopular.enumerated.TipoExames;
@@ -11,19 +13,24 @@ public class Exame {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(description = "identificador único do Exame",example = "1")
     private Long id;
 
     @Enumerated(EnumType.ORDINAL)
+    @Schema(description = "Tipos de Exames",example = "Raio x")
     private TipoExames exames;
 
     @Enumerated(EnumType.ORDINAL)
+    @Schema(description = "Status do Exame",example = "AGENDADO")
     private StatusExame status;
 
     @Column(nullable = false)
+    @Schema(description = "Motivo do exame para que foi pedido")
     private String motivo;
 
     @ManyToOne
     @JoinColumn(name = "id_paciente")
+    @JsonBackReference(value = "paciente-exame")
     private Paciente paciente;
 
     public Exame() {

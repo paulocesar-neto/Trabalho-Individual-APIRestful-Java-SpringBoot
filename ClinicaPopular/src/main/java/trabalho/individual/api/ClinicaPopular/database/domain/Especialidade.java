@@ -1,10 +1,8 @@
 package trabalho.individual.api.ClinicaPopular.database.domain;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import trabalho.individual.api.ClinicaPopular.enumerated.TipoEspecialidade;
-
 import java.util.Objects;
 
 @Entity
@@ -13,18 +11,23 @@ public class Especialidade {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(description = "Identificador único da consulta",example = "1")
     private Long id;
 
     @Enumerated(EnumType.STRING)
+    @Schema(description = "Tipo de Especialidade do Médico",example="CARDIOLOGISTA")
     private TipoEspecialidade tipoEspecialidade;
 
 
     @Column(nullable = false)
+    @Schema(description = "Descrição da especialidade")
     private String descricao;
 
 
     @Column(name = "codigo_cbo", nullable = false,length = 255)
+    @Schema(description = "Codigo Brasileiro de Ocupação", example = "2251-25")
     private String codigoCBO;//Código Brasileito de Ocupação;
+
 
     public Especialidade() {
     }

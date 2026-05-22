@@ -1,9 +1,10 @@
 package trabalho.individual.api.ClinicaPopular.database.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,37 +14,48 @@ public class Paciente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(description = "identificador único do Paciente",example = "1")
     private Long id;
 
     @Column(nullable = false,length = 100)
+    @Schema(description = "Nome Completo do Paciente")
     private String nome;
 
     @Column(nullable = false,length = 14,unique = true)
+    @Schema(description = "CPF formatado do cliente",example = "123.456.789-10")
     private String cpf;
 
     @Column(name = "data_nascimento", nullable = false)
-    private LocalDateTime dataNascimento;
+    @Schema(description = "Data de Nascimento do Paciente",example = "0000-00-00")
+    private LocalDate dataNascimento;
 
     @Column(nullable = false,unique = true)
+    @Schema(description = "Email do paciente")
     private String email;
 
-
     @Column(nullable = false,unique = true)
+    @Schema(description = "Telefone do Paciente")
     private String telefone;
 
     @OneToOne(mappedBy = "paciente")
+    @Schema(description = "Prontuário do Paciente")
+    @JsonManagedReference(value = "paciente-prontuario")
     private Prontuario prontuario;
 
     @OneToMany(mappedBy="paciente")
+    @JsonManagedReference(value = "paciente-consulta")
+    @Schema(description = "Consultas que o paciente realizou")
     private List<Consulta> consultas;
 
     @OneToMany(mappedBy ="paciente")
+    @JsonManagedReference(value = "paciente-exame")
+    @Schema(description = "Exames que o Paciente realizou")
     private List<Exame> exame;
 
     public Paciente() {
     }
 
-    public Paciente(Long id, String nome, String cpf, LocalDateTime dataNascimento, String email, String telefone, Prontuario prontuario, List<Consulta> consultas, List<Exame> exame) {
+    public Paciente(Long id, String nome, String cpf, LocalDate dataNascimento, String email, String telefone, Prontuario prontuario, List<Consulta> consultas, List<Exame> exame) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
@@ -79,11 +91,11 @@ public class Paciente {
         this.cpf = cpf;
     }
 
-    public LocalDateTime getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(LocalDateTime dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 

@@ -1,10 +1,8 @@
 package trabalho.individual.api.ClinicaPopular.database.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-
-
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -15,29 +13,39 @@ public class Prontuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(description = "identificador único do Prontuario",example = "1")
     private Long id;
 
     @Column(nullable = false, unique = true)
+    @Schema(description = "Numero do prontuario de cada Paciente",example = "123456-7")
     private String numero;
 
     @Column(nullable = false)
+    @Schema(description = "Prescrição da consulta")
     private String prescricao;
 
     @Column(length = 255)
+    @Schema(description = "Histórico de alergias do paciente")
     private String alergia;
 
     @Column(length = 255)
+    @Schema(description = "Medicamentos de uso do paciente ou medicamentos receitados")
     private String medicamento;
 
     @Column(name = "data_hora_atendimento", nullable = false)
+    @Schema(description = "Data e hora da consulta realizada no dia",example = "2026-05-22T14:30:00")
     private LocalDateTime dataHoraAtendimento;
 
     @OneToOne
     @JoinColumn(name = "id_paciente")
+    @JsonBackReference(value = "paciente-prontuario")
+    @Schema(description = "Paciente que pertence ao prontuário")
     private Paciente paciente;
 
     @ManyToOne
     @JoinColumn(name = "id_medico")
+    @JsonBackReference(value = "medico-prontuario")
+    @Schema(description = "Histórico do médico que atendeu ao Paciente usando o prontuário dele")
     private List<Medico> medico;
 
     public Prontuario() {
