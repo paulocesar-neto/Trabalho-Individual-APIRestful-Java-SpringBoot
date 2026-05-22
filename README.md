@@ -16,7 +16,8 @@ O sistema permite o gerenciamento completo de pacientes, médicos, consultas, ex
 
 **Nome:** Paulo Cesar Ferreira Vale Neto
 
-**GitHub:** (Seu repositório)
+**GitHub:** [(Trabalho-Individual-APIRestful-Java-SpringBoot
+)](https://github.com/paulocesar-neto/Trabalho-Individual-APIRestful-Java-SpringBoot.git)
 
 ---
 
