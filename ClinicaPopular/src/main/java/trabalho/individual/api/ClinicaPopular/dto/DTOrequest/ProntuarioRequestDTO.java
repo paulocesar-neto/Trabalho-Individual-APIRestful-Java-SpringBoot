@@ -2,7 +2,7 @@ package trabalho.individual.api.ClinicaPopular.dto.DTOrequest;
 
 import trabalho.individual.api.ClinicaPopular.database.domain.Paciente;
 
-import java.math.BigDecimal;
+
 import java.time.LocalDateTime;
 
 public class ProntuarioRequestDTO {
@@ -17,7 +17,7 @@ public class ProntuarioRequestDTO {
     public ProntuarioRequestDTO() {
     }
 
-    public BigDecimal getNumero() {
+    public String getNumero() {
         return numero;
     }
 

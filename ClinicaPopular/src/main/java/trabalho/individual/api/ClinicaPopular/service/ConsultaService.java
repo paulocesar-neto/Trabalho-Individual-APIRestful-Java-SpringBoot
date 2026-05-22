@@ -29,13 +29,13 @@ public class ConsultaService {
 
     public ConsultaResponseDTO buscarConsultaID(Long id){
         Consulta consulta = consultaRepository.findById(id)
-                .orElseThrow(() -> new RecursoNaoEncontradoException("Especialidade não Encontrada"));
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Consulta não Encontrada"));
 
         return new ConsultaResponseDTO(consulta);
     }
 
 
-    public ConsultaResponseDTO inserir (ConsultaRequestDTO consultaDTO){
+    public ConsultaResponseDTO inserirConsulta (ConsultaRequestDTO consultaDTO){
 
 
         Consulta consulta = new Consulta();
@@ -51,10 +51,10 @@ public class ConsultaService {
         return new ConsultaResponseDTO(consulta);
     }
 
-    public ConsultaResponseDTO atualizar (ConsultaRequestDTO consultaDTO, Long id){
+    public ConsultaResponseDTO atualizarConsulta (ConsultaRequestDTO consultaDTO, Long id){
 
         Consulta consulta = consultaRepository.findById(id)
-                .orElseThrow(() -> new RecursoNaoEncontradoException("Especialidade Não Encontrada"));
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Consulta Não Encontrada"));
 
         consulta.setDescricao(consultaDTO.getDescricao());
         consulta.setDataHoraConsulta(consultaDTO.getDataHoraConsulta());
@@ -69,9 +69,9 @@ public class ConsultaService {
 
     }
 
-    public void remover (Long id){
+    public void removerConsulta (Long id){
         Consulta consulta = consultaRepository.findById(id)
-                .orElseThrow(() ->new RecursoNaoEncontradoException("Exame não encontrado"));
+                .orElseThrow(() ->new RecursoNaoEncontradoException("Consulta não encontrado"));
 
         consultaRepository.delete(consulta);
     }

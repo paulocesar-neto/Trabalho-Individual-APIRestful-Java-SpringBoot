@@ -4,14 +4,13 @@ import trabalho.individual.api.ClinicaPopular.database.domain.Medico;
 import trabalho.individual.api.ClinicaPopular.database.domain.Paciente;
 import trabalho.individual.api.ClinicaPopular.database.domain.Prontuario;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class ProntuarioResponseDTO{
 
     private Long id;
-    private BigDecimal numero;
+    private String numero;
     private String prescricao;
     private String alergia;
     private String medicamento;
@@ -31,7 +30,6 @@ public class ProntuarioResponseDTO{
         this.dataHoraAtendimento = prontuario.getDataHoraAtendimento();
         this.paciente = prontuario.getPaciente();
         this.medico = prontuario.getMedico();
-
     }
 
     public Long getId() {
@@ -42,11 +40,11 @@ public class ProntuarioResponseDTO{
         this.id = id;
     }
 
-    public BigDecimal getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(BigDecimal numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
@@ -97,6 +95,5 @@ public class ProntuarioResponseDTO{
     public void setMedico(List<Medico> medico) {
         this.medico = medico;
     }
-
 
 }

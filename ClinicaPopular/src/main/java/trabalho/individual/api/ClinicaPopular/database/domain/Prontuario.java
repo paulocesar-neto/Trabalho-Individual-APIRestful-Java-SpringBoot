@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-import java.math.BigDecimal;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -21,7 +21,7 @@ public class Prontuario {
     @NotNull(message = "numero do prontuário não pode ser nulo")
     @NotBlank(message = "Número do prontuário é obrigatório")
     @Column(nullable = false, unique = true)
-    private BigDecimal numero;
+    private String numero;
 
     @NotNull(message = "Precrição não pode ser nula")
     @NotBlank(message = "Prescrição é obrigatória")
@@ -52,7 +52,7 @@ public class Prontuario {
     public Prontuario() {
     }
 
-    public Prontuario(Long id, BigDecimal numero, String prescricao, String alergia, String medicamento, LocalDateTime dataHoraAtendimento, Paciente paciente, List<Medico> medico) {
+    public Prontuario(Long id, String numero, String prescricao, String alergia, String medicamento, LocalDateTime dataHoraAtendimento, Paciente paciente, List<Medico> medico) {
         this.id = id;
         this.numero = numero;
         this.prescricao = prescricao;
@@ -71,11 +71,11 @@ public class Prontuario {
         this.id = id;
     }
 
-    public BigDecimal getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(BigDecimal numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 

@@ -38,7 +38,7 @@ public class ProntuarioService {
 
         Prontuario prontuario = new Prontuario();
 
-        prontuario.setNumero(prontuario.getNumero());
+        prontuario.setNumero(prontuarioDTO.getNumero());
         prontuario.setPrescricao(prontuarioDTO.getPrescricao());
         prontuario.setAlergia(prontuarioDTO.getAlergia());
         prontuario.setMedicamento(prontuarioDTO.getMedicamento());
