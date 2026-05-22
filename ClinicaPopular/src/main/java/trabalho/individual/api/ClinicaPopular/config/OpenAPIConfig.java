@@ -15,7 +15,7 @@ public class OpenAPIConfig {
         Contact contato = new Contact();
         contato.setEmail("paulo.neto@residente.serratec.org");
         contato.setName("Paulo Cesar");
-        contato.setUrl("https://www.paulo.neto");
+        contato.setUrl("https://github.com/paulo-neto");
 
         License apacheLicense = new License()
                 .name("Apache License")
