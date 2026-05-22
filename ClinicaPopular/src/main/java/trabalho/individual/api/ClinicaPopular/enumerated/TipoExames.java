@@ -35,9 +35,6 @@ public enum TipoExames {
                         "5-Ultrassonografia");
     }
 
-
-
-
     public Integer getOpcao() {
         return opcao;
     }

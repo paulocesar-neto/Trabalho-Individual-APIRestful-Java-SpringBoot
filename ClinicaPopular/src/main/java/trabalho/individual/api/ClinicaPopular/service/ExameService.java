@@ -36,7 +36,7 @@ public class ExameService {
     }
 
 
-    public ExameResponseDTO inserir (ExameRequestDTO exameDTO){
+    public ExameResponseDTO inserirExame (ExameRequestDTO exameDTO){
 
 
         Exame exame = new Exame();
@@ -52,7 +52,7 @@ public class ExameService {
         return new ExameResponseDTO(exameRepository.save(exame));
     }
 
-    public ExameResponseDTO atualizar (ExameRequestDTO exameDTO, Long id){
+    public ExameResponseDTO atualizarExame (ExameRequestDTO exameDTO, Long id){
 
         Exame exame = exameRepository.findById(id)
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Exame Não Encontrado"));
@@ -67,7 +67,7 @@ public class ExameService {
 
     }
 
-    public void remover (Long id){
+    public void removerExame (Long id){
         Exame exame = exameRepository.findById(id)
                 .orElseThrow(() ->new RecursoNaoEncontradoException("Exame não encontrado"));
 
