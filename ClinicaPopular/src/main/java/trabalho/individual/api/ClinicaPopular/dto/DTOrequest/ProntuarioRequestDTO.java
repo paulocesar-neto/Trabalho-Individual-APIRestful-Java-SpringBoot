@@ -1,18 +1,23 @@
 package trabalho.individual.api.ClinicaPopular.dto.DTOrequest;
 
+import trabalho.individual.api.ClinicaPopular.database.domain.Paciente;
+
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class ProntuarioRequestDTO {
+
     private String numero;
     private String prescricao;
     private String alergia;
     private String medicamento;
     private LocalDateTime dataHoraAtendimento;
+    private Paciente paciente;
 
     public ProntuarioRequestDTO() {
     }
 
-    public String getNumero() {
+    public BigDecimal getNumero() {
         return numero;
     }
 
@@ -50,5 +55,13 @@ public class ProntuarioRequestDTO {
 
     public void setDataHoraAtendimento(LocalDateTime dataHoraAtendimento) {
         this.dataHoraAtendimento = dataHoraAtendimento;
+    }
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
     }
 }

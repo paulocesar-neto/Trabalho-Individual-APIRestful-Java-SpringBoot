@@ -1,12 +1,16 @@
 package trabalho.individual.api.ClinicaPopular.dto.DTOrequest;
 
+import trabalho.individual.api.ClinicaPopular.database.domain.Medico;
 import trabalho.individual.api.ClinicaPopular.enumerated.TipoEspecialidade;
+
+import java.util.List;
 
 public class EspecialidadeRequestDTO {
 
    private TipoEspecialidade tipoEspecialidade;
    private String descricao;
    private String codigoCBO;
+   private List<Medico> medicos;
 
     public EspecialidadeRequestDTO() {
     }
@@ -33,5 +37,13 @@ public class EspecialidadeRequestDTO {
 
     public void setCodigoCBO(String codigoCBO) {
         this.codigoCBO = codigoCBO;
+    }
+
+    public List<Medico> getMedicos() {
+        return medicos;
+    }
+
+    public void setMedicos(List<Medico> medicos) {
+        this.medicos = medicos;
     }
 }

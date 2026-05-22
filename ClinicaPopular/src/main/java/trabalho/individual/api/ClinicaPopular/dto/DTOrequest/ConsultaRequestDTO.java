@@ -1,10 +1,13 @@
 package trabalho.individual.api.ClinicaPopular.dto.DTOrequest;
 
+import trabalho.individual.api.ClinicaPopular.database.domain.Medico;
+import trabalho.individual.api.ClinicaPopular.database.domain.Paciente;
 import trabalho.individual.api.ClinicaPopular.enumerated.StatusConsulta;
 import trabalho.individual.api.ClinicaPopular.enumerated.TipoConsulta;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class ConsultaRequestDTO {
 
@@ -13,6 +16,8 @@ public class ConsultaRequestDTO {
     private LocalDateTime dataHoraConsulta;
     private TipoConsulta  tipoConsulta;
     private StatusConsulta statusConsulta;
+    private List<Paciente> pacientes;
+    private List<Medico> medicos;
 
     public ConsultaRequestDTO() {
     }
@@ -55,5 +60,21 @@ public class ConsultaRequestDTO {
 
     public void setStatusConsulta(StatusConsulta statusConsulta) {
         this.statusConsulta = statusConsulta;
+    }
+
+    public List<Paciente> getPacientes() {
+        return pacientes;
+    }
+
+    public void setPacientes(List<Paciente> pacientes) {
+        this.pacientes = pacientes;
+    }
+
+    public List<Medico> getMedicos() {
+        return medicos;
+    }
+
+    public void setMedicos(List<Medico> medicos) {
+        this.medicos = medicos;
     }
 }

@@ -100,4 +100,6 @@ public class Exame {
     public int hashCode() {
         return Objects.hash(id, exames, status, motivo, paciente);
     }
+
+
 }

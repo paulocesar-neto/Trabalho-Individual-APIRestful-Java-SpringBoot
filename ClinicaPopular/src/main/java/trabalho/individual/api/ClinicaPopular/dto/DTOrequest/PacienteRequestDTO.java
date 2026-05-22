@@ -1,7 +1,6 @@
 package trabalho.individual.api.ClinicaPopular.dto.DTOrequest;
 
-
-import trabalho.individual.api.ClinicaPopular.database.domain.Prontuario;
+import trabalho.individual.api.ClinicaPopular.database.domain.Paciente;
 
 public class PacienteRequestDTO{
 

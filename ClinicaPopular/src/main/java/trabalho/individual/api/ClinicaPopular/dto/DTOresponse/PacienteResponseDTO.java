@@ -10,6 +10,7 @@ public class PacienteResponseDTO {
         private String email;
         private String telefone;
 
+
     public PacienteResponseDTO() {
     }
 

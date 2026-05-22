@@ -1,5 +1,6 @@
 package trabalho.individual.api.ClinicaPopular.dto.DTOrequest;
 
+import trabalho.individual.api.ClinicaPopular.database.domain.Paciente;
 import trabalho.individual.api.ClinicaPopular.enumerated.StatusExame;
 import trabalho.individual.api.ClinicaPopular.enumerated.TipoExames;
 
@@ -8,6 +9,7 @@ public class ExameRequestDTO {
     private TipoExames exames;
     private StatusExame status;
     private String motivo;
+    private Paciente paciente;
 
     public ExameRequestDTO() {
     }
@@ -34,5 +36,13 @@ public class ExameRequestDTO {
 
     public void setMotivo(String motivo) {
         this.motivo = motivo;
+    }
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
     }
 }

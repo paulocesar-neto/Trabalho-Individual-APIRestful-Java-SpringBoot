@@ -68,7 +68,7 @@ public class Especialidade {
         return codigoCBO;
     }
 
-    public void setCodigoCFM(String codigoCFM) {
+    public void setCodigoCBO(String codigoCBO) {
         this.codigoCBO = codigoCBO;
     }
 
