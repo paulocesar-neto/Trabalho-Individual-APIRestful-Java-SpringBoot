@@ -25,7 +25,8 @@ public class PacienteController {
     @Operation(summary = "Lista todos os paciente cadastrados",description = "Lista paciente do Banco de Dados")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",description = "Paciente encontrados com sucesso"),
-            @ApiResponse(responseCode = "404",description = "Paciente não encontrado")
+            @ApiResponse(responseCode = "404",description = "Paciente não encontrado"),
+            @ApiResponse(responseCode = "401", description = "Erro de Autenticação")
     } )
     @GetMapping
     public ResponseEntity<List<PacienteResponseDTO>> listar(){
